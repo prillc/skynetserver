@@ -1,7 +1,25 @@
 local skynet = require "skynet"
+local sharetable = require("skynet.sharetable")
+require("skynet.manager")
+require("globalfunc")
 
-function main()
-    print("..main..")
-end
+skynet.start(
+    function()
+        print("...main...")
+        skynet.uniqueservice("debug_console", 8001)
+        -- 登录服务器
+        local loginservice = skynet.uniqueservice("login")
 
-skynet.start(main)
+        local watchdog = skynet.newservice("watchdog")
+        skynet.call(
+            watchdog,
+            "lua",
+            "start",
+            {
+                port = 6666,
+                nodelay = true,
+                loginservice = loginservice
+            }
+        )
+    end
+)

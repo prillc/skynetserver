@@ -1,0 +1,49 @@
+10/12/21 19:55:20.65 [:00000002] LAUNCH snlua bootstrap
+10/12/21 19:55:20.65 [:00000003] LAUNCH snlua launcher
+10/12/21 19:55:20.65 [:00000004] LAUNCH snlua cdummy
+10/12/21 19:55:20.65 [:00000005] LAUNCH harbor 0 4
+10/12/21 19:55:20.65 [:00000006] LAUNCH snlua datacenterd
+10/12/21 19:55:20.66 [:00000007] LAUNCH snlua service_mgr
+10/12/21 19:55:20.66 [:00000008] LAUNCH snlua main
+10/12/21 19:55:20.66 [:00000009] LAUNCH snlua debug_console 8001
+10/12/21 19:55:20.66 [:00000009] Start debug console at 127.0.0.1:8001
+10/12/21 19:55:20.66 [:0000000a] LAUNCH snlua testmonitor
+10/12/21 19:55:20.66 [:0000000b] LAUNCH snlua simplemonitor
+10/12/21 19:55:20.66 [:00000002] KILL self
+10/12/21 19:56:34.87 [:00000002] LAUNCH snlua bootstrap
+10/12/21 19:56:34.87 [:00000003] LAUNCH snlua launcher
+10/12/21 19:56:34.87 [:00000004] LAUNCH snlua cdummy
+10/12/21 19:56:34.87 [:00000005] LAUNCH harbor 0 4
+10/12/21 19:56:34.87 [:00000006] LAUNCH snlua datacenterd
+10/12/21 19:56:34.87 [:00000007] LAUNCH snlua service_mgr
+10/12/21 19:56:34.87 [:00000008] LAUNCH snlua main
+10/12/21 19:56:34.88 [:00000009] LAUNCH snlua debug_console 8001
+10/12/21 19:56:34.88 [:00000009] Start debug console at 127.0.0.1:8001
+10/12/21 19:56:34.88 [:0000000a] LAUNCH snlua testmonitor
+10/12/21 19:56:34.88 [:0000000b] LAUNCH snlua simplemonitor
+10/12/21 19:56:34.88 [:00000002] KILL self
+10/12/21 19:56:42.16 [:00000002] LAUNCH snlua bootstrap
+10/12/21 19:56:42.16 [:00000003] LAUNCH snlua launcher
+10/12/21 19:56:42.16 [:00000004] LAUNCH snlua cdummy
+10/12/21 19:56:42.16 [:00000005] LAUNCH harbor 0 4
+10/12/21 19:56:42.16 [:00000006] LAUNCH snlua datacenterd
+10/12/21 19:56:42.16 [:00000007] LAUNCH snlua service_mgr
+10/12/21 19:56:42.16 [:00000008] LAUNCH snlua main
+10/12/21 19:56:42.17 [:00000009] LAUNCH snlua debug_console 8001
+10/12/21 19:56:42.17 [:00000009] Start debug console at 127.0.0.1:8001
+10/12/21 19:56:42.17 [:0000000a] LAUNCH snlua testmonitor
+10/12/21 19:56:42.17 [:0000000b] LAUNCH snlua simplemonitor
+10/12/21 19:56:42.17 [:00000002] KILL self
+10/12/21 19:56:52.17 [:00000008] KILL :a
+10/12/21 19:57:10.58 [:00000002] LAUNCH snlua bootstrap
+10/12/21 19:57:10.58 [:00000003] LAUNCH snlua launcher
+10/12/21 19:57:10.58 [:00000004] LAUNCH snlua cdummy
+10/12/21 19:57:10.58 [:00000005] LAUNCH harbor 0 4
+10/12/21 19:57:10.58 [:00000006] LAUNCH snlua datacenterd
+10/12/21 19:57:10.58 [:00000007] LAUNCH snlua service_mgr
+10/12/21 19:57:10.58 [:00000008] LAUNCH snlua main
+10/12/21 19:57:10.59 [:00000009] LAUNCH snlua debug_console 8001
+10/12/21 19:57:10.59 [:00000009] Start debug console at 127.0.0.1:8001
+10/12/21 19:57:10.59 [:0000000a] LAUNCH snlua testmonitor
+10/12/21 19:57:10.59 [:0000000b] LAUNCH snlua simplemonitor
+10/12/21 19:57:10.59 [:00000002] KILL self

@@ -13,10 +13,14 @@ bootstrap = "snlua bootstrap"
 -- 用 C 编写的服务模块的位置，通常指 cservice 下那些 .so 文件。如果你的系统的动态库不是以 .so 为后缀，需要做相应的修改。这个路径可以配置多项，以 ; 分割
 cpath = root .. "cservice/?.so"
 -- lua 服务代码所在的位置。可以配置多项，以 ; 分割
-luaservice = root .. "service/?.lua;" .. root .. "test/?.lua;" .. root .. "examples/?.lua"
+luaservice = root .. "service/?.lua;" .. root .. "examples/?.lua;"
+-- luaservice = root .. "service/?.lua;"
 lualoader = root .. "lualib/loader.lua"
 lua_cpath = root .. "luaclib/?.so"
 lua_path = root .. "lualib/?.lua;" .. root .. "lualib/?/init.lua"
 -- snax = root .. "examples/?.lua;" .. root .. "test/?.lua"
 
-luaservice = "./service/?.lua;" .. luaservice
+luaservice = "./service/?.lua;./service/?/main.lua;" .. luaservice
+lua_path = "./lualib/?.lua;" .. lua_path
+launchd = "./skynet.pid"
+-- daemon = "./skynet.pid"
