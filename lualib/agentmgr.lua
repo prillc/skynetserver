@@ -1,5 +1,4 @@
 local skynet = require("skynet")
-require("globalfunc")
 
 local M = {
     conf = {

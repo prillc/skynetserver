@@ -2,7 +2,6 @@ local skynet = require "skynet"
 local socket = require "skynet.socket"
 local agentmgr = require "agentmgr"
 local json = require "json"
-require("globalfunc")
 
 local CMD = {}
 local SOCKET = {}
@@ -14,12 +13,23 @@ local loginservice
 local authed_fds = {}
 
 function close_agent(fd)
+    print("close agent", fd)
     local a = authed_fds[fd]
     if not a then
         return
     end
-    skynet.call(a, "lua", "clear_state")
-    agentmgr.set_free(a)
+    skynet.call(a.agent, "lua", "clear_state")
+    agentmgr.set_free(a.agent)
+end
+
+function agent_heatbeat()
+    local msg = "heartbeat"
+    local data = string.pack(">Hs2", #msg, msg)
+    for fd, _ in pairs(authed_fds) do
+        socket.write(fd, data)
+    end
+
+    skynet.timeout(100, agent_heatbeat)
 end
 
 function SOCKET.open(fd, addr)
@@ -29,6 +39,7 @@ end
 
 function SOCKET.close(fd)
     print("socket close", fd)
+    close_agent(fd)
 end
 
 function SOCKET.error(fd, msg)
@@ -65,14 +76,23 @@ end
 function CMD.login_success(fd, uid)
     skynet.error("login success", fd, uid)
     local a = agentmgr.pop()
-    authed_fds[fd] = uid
+    authed_fds[fd] = {
+        uid = uid,
+        agent = a
+    }
     skynet.call(a, "lua", "init_state", fd, uid)
     -- 交给agent处理消息
     skynet.call(gate, "lua", "forward", fd, nil, a)
 end
 
+function CMD.dump_agentmgr()
+    dump(agentmgr.agentpool, "AGENTMGR:")
+    dump(agentmgr.freeagents, "FREEAGENTS")
+end
+
 skynet.start(
     function()
+        require("LuaPanda").start("127.0.0.01", 8818)
         skynet.dispatch(
             "lua",
             function(session, source, cmd, subcmd, ...)
@@ -93,6 +113,8 @@ skynet.start(
             watchdog = skynet.self(),
             gate = gate
         }
-        agentmgr.precreate_agetns(10)
+        agentmgr.precreate_agetns(1)
+        -- 心跳
+        agent_heatbeat()
     end
 )

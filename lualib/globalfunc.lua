@@ -45,16 +45,13 @@ function dump(value, desciption, nesting)
                     end
                     values[k] = v
                 end
-                table.sort(
-                    keys,
-                    function(a, b)
-                        if type(a) == "number" and type(b) == "number" then
-                            return a < b
-                        else
-                            return tostring(a) < tostring(b)
-                        end
+                table.sort(keys, function(a, b)
+                    if type(a) == "number" and type(b) == "number" then
+                        return a < b
+                    else
+                        return tostring(a) < tostring(b)
                     end
-                )
+                end)
                 for i, k in ipairs(keys) do
                     _dump(values[k], k, indent2, nest + 1, keylen)
                 end
@@ -86,7 +83,9 @@ end
 function class(name, super)
     local cls = nil
     if super then
-        cls = {__index = super}
+        cls = {
+            __index = super
+        }
     else
         cls = {
             ctor = function(...)
@@ -101,10 +100,4 @@ function class(name, super)
         return instance
     end
     return cls
-end
-
-Foo = class("Foo")
-function Foo:ctor(name, level)
-    self.name = name
-    self.level = level
 end

@@ -1,9 +1,7 @@
 local skynet = require "skynet"
 local socket = require("skynet.socket")
-require("globalfunc")
 local json = require "json"
 local handlerdispathcer = require("msghandler.dispatcher")
-
 local watchdog
 local gate
 local agentstate = {
@@ -21,7 +19,6 @@ skynet.register_protocol {
     dispatch = function(fd, _, data)
         assert(fd == agentstate.fd) -- You can use fd to reply message
         skynet.ignoreret() -- session is fd, don't call skynet.ret
-        skynet.trace()
         data.fd = fd
         data.agent = skynet.self()
         dump(data, "AGENT REQUEST: ")

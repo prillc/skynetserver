@@ -12,13 +12,8 @@ function CMD.login(source, fd, uid)
     end
 end
 
-skynet.start(
-    function()
-        skynet.dispatch(
-            "lua",
-            function(_, address, cmd, ...)
-                skynet.ret(skynet.pack(CMD[cmd](address, ...)))
-            end
-        )
-    end
-)
+skynet.start(function()
+    skynet.dispatch("lua", function(_, address, cmd, ...)
+        skynet.ret(skynet.pack(CMD[cmd](address, ...)))
+    end)
+end)

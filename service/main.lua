@@ -1,11 +1,10 @@
 local skynet = require "skynet"
 local sharetable = require("skynet.sharetable")
 require("skynet.manager")
-require("globalfunc")
 
 skynet.start(
     function()
-        print("...main...")
+        dump("...main...")
         skynet.uniqueservice("debug_console", 8001)
         -- 登录服务器
         local loginservice = skynet.uniqueservice("login")
