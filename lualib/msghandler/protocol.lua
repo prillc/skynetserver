@@ -1,0 +1,3 @@
+return {
+    LOGIN = "auth.login"
+}

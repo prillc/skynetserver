@@ -45,13 +45,16 @@ function dump(value, desciption, nesting)
                     end
                     values[k] = v
                 end
-                table.sort(keys, function(a, b)
-                    if type(a) == "number" and type(b) == "number" then
-                        return a < b
-                    else
-                        return tostring(a) < tostring(b)
+                table.sort(
+                    keys,
+                    function(a, b)
+                        if type(a) == "number" and type(b) == "number" then
+                            return a < b
+                        else
+                            return tostring(a) < tostring(b)
+                        end
                     end
-                end)
+                )
                 for i, k in ipairs(keys) do
                     _dump(values[k], k, indent2, nest + 1, keylen)
                 end
@@ -80,24 +83,42 @@ function table.pop(tb)
     return r
 end
 
-function class(name, super)
-    local cls = nil
+function string.isempty(s)
+    if not s or s == "" then
+        return true
+    end
+    return false
+end
+
+function class(classname, super)
+    local superType = type(super)
+    local cls
+
+    if superType ~= "function" and superType ~= "table" then
+        superType = nil
+        super = nil
+    end
+
     if super then
-        cls = {
-            __index = super
-        }
+        cls = {}
+        setmetatable(cls, {__index = super})
+        cls.super = super
     else
         cls = {
-            ctor = function(...)
+            ctor = function()
             end
         }
     end
+
+    cls.__cname = classname
     cls.__index = cls
-    cls.new = function(...)
+
+    function cls.new(...)
         local instance = setmetatable({}, cls)
         instance.class = cls
         instance:ctor(...)
         return instance
     end
+
     return cls
 end

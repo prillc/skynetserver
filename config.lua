@@ -13,14 +13,20 @@ bootstrap = "snlua bootstrap"
 -- 用 C 编写的服务模块的位置，通常指 cservice 下那些 .so 文件。如果你的系统的动态库不是以 .so 为后缀，需要做相应的修改。这个路径可以配置多项，以 ; 分割
 cpath = root .. "cservice/?.so;"
 -- lua 服务代码所在的位置。可以配置多项，以 ; 分割
-luaservice = root .. "service/?.lua;" .. root .. "examples/?.lua;"
--- luaservice = root .. "service/?.lua;"
+-- luaservice = root .. "service/?.lua;" .. root .. "examples/?.lua;"
+luaservice = root .. "service/?.lua;"
 lualoader = root .. "lualib/loader.lua"
-preload = "./lualib/preload.lua"
+preload = "./lualib/init.lua"
 lua_cpath = root .. "luaclib/?.so;"
 lua_path = root .. "lualib/?.lua;" .. root .. "lualib/?/init.lua"
 -- snax = root .. "examples/?.lua;" .. root .. "test/?.lua"
 
-luaservice = "./service/?.lua;./service/?/main.lua;" .. luaservice
+luaservice = "./service/?.lua;./service/?/main.lua;./test/?.lua;" .. luaservice
 lua_path = "./lualib/?.lua;" .. lua_path
-lua_cpath = "./luaclib/?.so;./luaclib/?.so;" .. lua_cpath
+lua_cpath = "./luaclib/?.so;" .. lua_cpath
+
+-- mongo配置
+mongo_host = "127.0.0.1"
+-- mongo_username = ""
+-- mongo_password = ""
+mongo_database = "test_skynet"
